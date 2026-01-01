@@ -1,9 +1,9 @@
 [submodule "backend"]
 	path = backend
-	url = https://github.com/ibog1/django-realworld-example-app
+	url = https://github.com/ibog1/conduit-backend
 	branch = feature/docker-backend
 
 [submodule "frontend"]
 	path = frontend
-	url = https://github.com/ibog1/angular-realworld-example-app  
+	url = https://github.com/ibog1/conduit-frontend  
 	branch = feature/docker-frontend
