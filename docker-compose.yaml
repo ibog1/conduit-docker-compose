@@ -10,14 +10,14 @@ services:
     restart: on-failure     
 
   backend:
-    build: ./backend        
-    restart: on-failure:5   
+    build: ./conduit-backend        
+    restart: on-failure
     env_file:
       - .env
     ports:
-      - "8000:8000"         
-    depends_on:
-      - db
+      - "8000:5000"
+    depends_on:           
+      - db  
     logging:                
       driver: "json-file"
       options:
@@ -25,12 +25,16 @@ services:
         max-file: "3"
 
   frontend:
-    build: ./frontend       
+    build: ./conduit-frontend       
     ports:
       - "8282:80"
     restart: on-failure
     env_file:
       - .env
+    extra_hosts:        
+      - "localhost:host-gateway"
+    depends_on:         
+      - backend
 
 volumes:
   postgres_data:
