@@ -1,9 +1,10 @@
 [submodule "backend"]
-	path = backend
+	path = conduit-backend
 	url = https://github.com/ibog1/conduit-backend
 	branch = feature/docker-backend
 
 [submodule "frontend"]
-	path = frontend
-	url = https://github.com/ibog1/conduit-frontend  
+	path = conduit-frontend
+	url = https://github.com/ibog1/conduit-frontend
 	branch = feature/docker-frontend
+
