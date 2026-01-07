@@ -6,5 +6,5 @@
 [submodule "frontend"]
 	path = conduit-frontend
 	url = https://github.com/ibog1/conduit-frontend
-	branch = feature/docker-frontend
+	branch = feature/docker-frontend #new
 
