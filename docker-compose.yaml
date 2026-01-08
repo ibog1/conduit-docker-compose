@@ -1,42 +1,39 @@
 services:
   db:
-    image: postgres:14      
-    env_file:
-      - .env                
+    image: postgres:14
+    env_file: .env              
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    restart: on-failure     
+    restart: on-failure         
 
   backend:
-    build: ./conduit-backend        
+    build: ./conduit-backend
     restart: on-failure
-    env_file:
-      - .env
+    env_file: .env
     ports:
       - "8000:5000"
-    depends_on:           
+    depends_on:
       - db  
-    logging:                
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+    networks:
+      - conduit-net     
 
   frontend:
-    build: ./conduit-frontend       
+    build: ./conduit-frontend
     ports:
       - "8282:80"
     restart: on-failure
-    env_file:
-      - .env
-    extra_hosts:        
-      - "localhost:host-gateway"
+    env_file: .env
     environment:
-    - API_URL=http://backend:5000/api
-    depends_on:         
+      - API_URL=http://backend:5000/api
+    depends_on:
       - backend
+    networks:
+      - conduit-net     
 
 volumes:
   postgres_data:
+
+networks:
+  conduit-net:
