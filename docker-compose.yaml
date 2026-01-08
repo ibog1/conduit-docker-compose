@@ -29,7 +29,7 @@ services:
     restart: on-failure
     env_file: .env
     environment:
-      - API_URL=http://backend:5000/api
+      - REACT_APP_API_URL=http://116.203.194.189:8000/api
     depends_on:
       - backend
     networks:
