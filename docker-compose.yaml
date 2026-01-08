@@ -1,12 +1,12 @@
 services:
   db:
     image: postgres:14
-    env_file: .env              
+    env_file: .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    restart: on-failure         
+    restart: on-failure
 
   backend:
     build: ./conduit-backend
@@ -14,10 +14,14 @@ services:
     env_file: .env
     ports:
       - "8000:5000"
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             gunicorn -w 4 -b 0.0.0.0:5000 conduit.wsgi:application"
     depends_on:
-      - db  
+      - db
     networks:
-      - conduit-net     
+      - conduit-net
 
   frontend:
     build: ./conduit-frontend
@@ -30,7 +34,7 @@ services:
     depends_on:
       - backend
     networks:
-      - conduit-net     
+      - conduit-net
 
 volumes:
   postgres_data:
