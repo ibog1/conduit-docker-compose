@@ -22,18 +22,18 @@ services:
     networks:
       - conduit-net
 
-  frontend:
-    build: ./conduit-frontend
-    ports:
-      - "8282:80"
-    restart: on-failure
-    env_file: .env
-    environment:
+ frontend:
+  build:
+    context: ./conduit-frontend
+    args:
       - REACT_APP_API_URL=http://116.203.194.189:8000/api
-    depends_on:
-      - backend
-    networks:
-      - conduit-net
+  ports:
+    - "8282:80"
+  restart: on-failure
+  depends_on:
+    - backend
+  networks:
+    - conduit-net
 
 volumes:
   postgres_data:
