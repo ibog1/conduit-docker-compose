@@ -7,8 +7,10 @@ services:
     ports:
       - "5432:5432"
     restart: on-failure
+    networks:
+      - conduit-net
 
- backend:
+  backend:
     build: ./conduit-backend
     restart: on-failure
     env_file: .env
@@ -16,24 +18,24 @@ services:
       - "8000:5000"
     command: >
       sh -c "python manage.py migrate &&
-         gunicorn -w 4 -b 0.0.0.0:5000 conduit.wsgi:application"
+             gunicorn -w 4 -b 0.0.0.0:5000 conduit.wsgi:application"
     depends_on:
       - db
     networks:
       - conduit-net
 
- frontend:
-  build:
-    context: ./conduit-frontend
-    args:
-      - REACT_APP_API_URL=http://116.203.194.189:8000/api
-  ports:
-    - "8282:80"
-  restart: on-failure
-  depends_on:
-    - backend
-  networks:
-    - conduit-net
+  frontend:
+    build:
+      context: ./conduit-frontend
+      args:
+        - REACT_APP_API_URL=http://116.203.194.189:8000/api
+    ports:
+      - "8282:80"
+    restart: on-failure
+    depends_on:
+      - backend
+    networks:
+      - conduit-net
 
 volumes:
   postgres_data:
