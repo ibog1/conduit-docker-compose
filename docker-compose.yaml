@@ -14,10 +14,15 @@ services:
     build: ./conduit-backend
     restart: on-failure
     env_file: .env
+    environment:
+      POSTGRES_DB: conduit
+      POSTGRES_USER: conduit
+      POSTGRES_PASSWORD: conduit123
     ports:
       - "8000:5000"
     command: >
-      sh -c "python manage.py migrate &&
+      sh -c "sleep 10 &&
+             python manage.py migrate &&
              gunicorn -w 4 -b 0.0.0.0:5000 conduit.wsgi:application"
     depends_on:
       - db
@@ -28,7 +33,7 @@ services:
     build:
       context: ./conduit-frontend
       args:
-        - REACT_APP_API_URL=http://116.203.194.189:8000/api
+        - REACT_APP_API_URL=http://backend:5000/api
     ports:
       - "8282:80"
     restart: on-failure
