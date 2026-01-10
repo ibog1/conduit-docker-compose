@@ -2,6 +2,11 @@ services:
   db:
     image: postgres:14
     env_file: .env
+    environment:
+      - POSTGRES_DB=conduit
+      - POSTGRES_USER=conduit
+      - POSTGRES_PASSWORD=conduit123
+      - TZ=UTC
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
