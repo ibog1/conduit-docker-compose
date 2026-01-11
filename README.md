@@ -6,7 +6,6 @@ Fullstack Conduit app following RealWorld API spec. Features JWT auth, articles 
 ## Table of Contents
 - [Quickstart](#quickstart)
 - [Usage](#usage)
-- [Environment Variables](#environment-variables)
 - [Project Structure](#project-structure)
 - [Troubleshooting](#troubleshooting)
 
@@ -15,8 +14,11 @@ Fullstack Conduit app following RealWorld API spec. Features JWT auth, articles 
 ## Quickstart
 
 ### Prerequisites
-- Docker & Docker Compose
-- Git
+
+| Tool            | Version Recommendation | Purpose                              |
+|-----------------|------------------------|--------------------------------------|
+| [Git]         | ≥ 2.30                 | Clone the repository                 |
+| [Docker]     | ≥ 24.0                 | Container runtime                    |
 
 ---
 
@@ -89,27 +91,12 @@ docker compose up -d --build
 ```bash
 docker compose exec backend bash
 ```
-## Environment Variables
-Create a ``.env`` file at the repo root. Example:
+---
 
 > [!IMPORTANT]
 > Never commit ``.env``! Use ``.env.example`` for defaults.
 
-### Core
-```bash
-SECRET_KEY=dev-secret-only
-DEBUG=True
-ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
-```
-### CORS / CSRF: full origins (scheme + host + port)
-```bash
-CORS_ORIGINS=<http://localhost:4000,http://127.0.0.1:4000>
-CSRF_TRUSTED_ORIGINS=<http://localhost:4000,http://127.0.0.1:4000>
-```
-### Static (optional; defaults used in settings.py)
-```bash
-STATIC_ROOT=/app/staticfiles
-```
+---
 
 > [!NOTE]
 > Vars: UPPER_CASE_WITH_UNDERSCORE and restart after changes: ``docker compose restart``
