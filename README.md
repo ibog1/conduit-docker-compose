@@ -19,7 +19,7 @@ Fullstack Conduit app following RealWorld API spec. Features JWT auth, articles 
 - Git
 ### 1. Clone the repo 
 ```bash
-git clone 
+git clone https://github.com/ibog1/conduit-docker-compose
 cd conduit-backend
 ```
 ### 2. Create a .env file (see template below)
