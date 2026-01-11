@@ -127,6 +127,7 @@ Remove cached Angular/nginx files if frontend appears outdated.
 
 ---
 
+```bash
 conduit-docker-compose/                     # MAIN REPOSITORY (docker-compose orchestrates everything)
 │
 ├── docker-compose.yaml                     # Control center (3 services, ports 8282 / 8000 / 5432)
@@ -153,5 +154,5 @@ conduit-docker-compose/                     # MAIN REPOSITORY (docker-compose or
 │               └── interceptors/            # Automatically prefixes API calls with /api
 │
 └── volumes / networks                      # postgres_data (persistent volume), conduit-net (Docker network)
-
+```
 
