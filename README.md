@@ -127,26 +127,31 @@ Remove cached Angular/nginx files if frontend appears outdated.
 
 ---
 
-conduit-docker-compose/                     # ← MAIN REPOSITORY (docker-compose orchestrates everything)
+conduit-docker-compose/                     # MAIN REPOSITORY (docker-compose orchestrates everything)
 │
-├── docker-compose.yaml                     # ← CONTROL CENTER (3 services, ports 8282 / 8000 / 5432)
-├── .env.example                            # ← PUBLIC (environment template, safe for Git)
-├── .env                                    # ← SECRET (passwords, IPs, ignored by Git)
-├── .gitignore                              # ← Protects .env and other sensitive files
-├── .dockerignore                           # ← Docker build optimization
+├── docker-compose.yaml                     # Control center (3 services, ports 8282 / 8000 / 5432)
+├── .env.example                            # Public environment template (safe for Git)
+├── .env                                    # Secret environment variables (passwords, IPs, gitignored)
+├── .gitignore                              # Protects .env and other sensitive files
+├── .dockerignore                           # Docker build optimization
 │
-├── conduit-backend/                        # ← DJANGO SUBMODULE (build: ./conduit-backend)
-│   ├── Dockerfile                          # ← Multi-stage build, Gunicorn on port 5000
-│   ├── conduit/settings.py                 # ← Uses os.environ.get('SECRET_KEY')
-│   ├── requirements.txt                   # ← Django, DRF, psycopg2
-│   └── conduit/apps/                       # ← Articles, Auth, Profiles apps
+├── conduit-backend/                        # Django backend submodule (build: ./conduit-backend)
+│   ├── Dockerfile                          # Multi-stage build, Gunicorn on port 5000
+│   ├── conduit/
+│   │   ├── settings.py                     # Uses os.environ.get('SECRET_KEY')
+│   │   └── apps/                           # Articles, Auth, Profiles apps
+│   └── requirements.txt                   # Django, DRF, psycopg2
 │
-├── conduit-frontend/                       # ← FRONTEND SUBMODULE (Angular, build: ./conduit-frontend)
-│   ├── Dockerfile                          # ← Multi-stage build, nginx on port 80
-│   ├── nginx.conf                          # ← proxy_pass /api → backend:5000
-│   ├── src/environments/environment.ts    # ← apiUrl: '/api' (via reverse proxy)
-│   └── src/app/core/interceptors/          # ← Automatically prefixes API calls with /api
+├── conduit-frontend/                       # Frontend submodule (Angular, build: ./conduit-frontend)
+│   ├── Dockerfile                          # Multi-stage build, nginx on port 80
+│   ├── nginx.conf                          # proxy_pass /api → backend:5000
+│   └── src/
+│       ├── environments/
+│       │   └── environment.ts              # apiUrl: '/api' (via reverse proxy)
+│       └── app/
+│           └── core/
+│               └── interceptors/            # Automatically prefixes API calls with /api
 │
-└── volumes / networks                      # ← postgres_data (persistent volume), conduit-net (Docker network)
+└── volumes / networks                      # postgres_data (persistent volume), conduit-net (Docker network)
 
 
