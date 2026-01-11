@@ -68,29 +68,53 @@ DB: localhost:5432 (Postgres persistent)
 - On a cloud VM, open the firewall for port 8000 (backend) and 8282 (frontend).
 
 ## Usage
-### Collect static files (only once per image change)
+### Collect static files
+Collect CSS/images for Django Admin once per image change.
 ```bash
 docker compose exec backend python manage.py collectstatic --noinput
 ```
-### (Optional) Create a superuser
+
+### Create a superuser (Optional) 
+Create Django admin user for `/admin` access.
 ```bash
 docker compose exec backend python manage.py createsuperuser
 ```
-### Rebuild containers
+
+### Rebuild containers after config changes
+Full rebuild required after `.env` modifications.
 ```bash
 docker compose down -v
 docker compose up -d --build
 ```
-## Logs and persistence
+
 ### Logs
+Monitor backend/frontend logs for debugging.
 ```bash
-  docker compose logs -f backend
-  docker compose logs -f frontend
-  ```
-### Exec into container
+docker compose logs -f backend
+docker compose logs -f frontend
+```
+
+### Access container shell
+Execute commands directly inside containers
 ```bash
 docker compose exec backend bash
+docker compose exec frontend sh
 ```
+
+### Clear frontend cache (stale assets)
+Remove cached Angular/nginx files if frontend appears outdated.
+ ```bash
+ docker compose exec frontend rm -rf /usr/share/nginx/html/*
+ docker compose up -d --build frontend
+ ```
+
+### Configuration customization
+ Modify VM IP, passwords, or production settings in `.env`:  
+   - `DJANGO_ALLOWED_HOSTS=*,new-vm-ip,localhost`  
+   - `POSTGRES_PASSWORD=strong-password`  
+   - `DEBUG=False` (production)  
+   Restart: `docker compose restart`
+
 ---
 
 > [!IMPORTANT]
