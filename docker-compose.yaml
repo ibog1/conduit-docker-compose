@@ -38,7 +38,7 @@ services:
     build:
       context: ./conduit-frontend
       args:
-        - REACT_APP_API_URL=http://116.203.194.189:8000/api
+        - REACT_APP_API_URL=http://backend:8000/api
     ports:
       - "8282:80"
     restart: on-failure
