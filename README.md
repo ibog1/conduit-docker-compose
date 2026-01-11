@@ -106,8 +106,9 @@ CSRF_TRUSTED_ORIGINS=<http://localhost:4000,http://127.0.0.1:4000>
 ```bash
 STATIC_ROOT=/app/staticfiles
 ```
-**Notes:**
+
 > [!IMPORTANT]
 > Never commit ``.env``! Use ``.env.example`` for defaults.
+---
 > [!NOTE]
 > Vars: UPPER_CASE_WITH_UNDERSCORE and restart after changes: ``docker compose restart``
