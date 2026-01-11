@@ -157,7 +157,7 @@ conduit-docker-compose/                     # MAIN REPOSITORY (docker-compose or
 │   ├── conduit/
 │   │   ├── settings.py                     # Uses os.environ.get('SECRET_KEY')
 │   │   └── apps/                           # Articles, Auth, Profiles apps
-│   └── requirements.txt                   # Django, DRF, psycopg2
+│   └── requirements.txt                    # Django, DRF, psycopg2
 │
 ├── conduit-frontend/                       # Frontend submodule (Angular, build: ./conduit-frontend)
 │   ├── Dockerfile                          # Multi-stage build, nginx on port 80
@@ -167,7 +167,7 @@ conduit-docker-compose/                     # MAIN REPOSITORY (docker-compose or
 │       │   └── environment.ts              # apiUrl: '/api' (via reverse proxy)
 │       └── app/
 │           └── core/
-│               └── interceptors/            # Automatically prefixes API calls with /api
+│               └── interceptors/           # Automatically prefixes API calls with /api
 │
 └── volumes / networks                      # postgres_data (persistent volume), conduit-net (Docker network)
 ```
