@@ -91,6 +91,10 @@ docker compose exec backend bash
 ```
 ## Environment Variables
 Create a ``.env`` file at the repo root. Example:
+
+> [!IMPORTANT]
+> Never commit ``.env``! Use ``.env.example`` for defaults.
+
 ### Core
 ```bash
 SECRET_KEY=dev-secret-only
@@ -107,8 +111,5 @@ CSRF_TRUSTED_ORIGINS=<http://localhost:4000,http://127.0.0.1:4000>
 STATIC_ROOT=/app/staticfiles
 ```
 
-> [!IMPORTANT]
-> Never commit ``.env``! Use ``.env.example`` for defaults.
----
 > [!NOTE]
 > Vars: UPPER_CASE_WITH_UNDERSCORE and restart after changes: ``docker compose restart``
