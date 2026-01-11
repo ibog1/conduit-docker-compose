@@ -112,8 +112,8 @@ Remove cached Angular/nginx files if frontend appears outdated.
  Modify VM IP, passwords, or production settings in `.env`:  
    - `DJANGO_ALLOWED_HOSTS=*,new-vm-ip,localhost`  
    - `POSTGRES_PASSWORD=strong-password`  
-   - `DEBUG=False` (production)  
-   Restart: `docker compose restart`
+   - `DEBUG=False` (production)
+   - Restart: `docker compose restart`
 
 ---
 
@@ -124,3 +124,28 @@ Remove cached Angular/nginx files if frontend appears outdated.
 
 > [!NOTE]
 > Vars: UPPER_CASE_WITH_UNDERSCORE and restart after changes: ``docker compose restart``
+
+---
+
+conduit-docker-compose/                    # ← HAUPT-REPO (docker-compose orchestriert alles)
+│
+├── docker-compose.yaml                    # ← STEUERZENTRALE (3 Services, Ports 8282/8000/5432)
+├── .env.example                          # ← ÖFFENTLICH (Template, Git OK)
+├── .env                                  # ← GEHEIM (Passwörter/IPs, .gitignore!)
+├── .gitignore                            # ← SCHÜTZT .env
+├── .dockerignore                         # ← Build-Optimierung
+│
+├── conduit-backend/                      # ← SUBMODUL DJANGO (build: ./conduit-backend)
+│   ├── Dockerfile                        # ← Multi-Stage, Gunicorn:5000
+│   ├── conduit/settings.py               # ← os.environ.get('SECRET_KEY')
+│   ├── requirements.txt                  # ← Django, DRF, psycopg2
+│   └── conduit/apps/                     # ← Articles, Auth, Profiles
+│
+├── conduit-frontend/                     # ← SUBMODUL ANGULAR (build: ./conduit-frontend)  
+│   ├── Dockerfile                        # ← Multi-Stage, nginx:80, ARG REACT_APP_API_URL
+│   ├── nginx.conf                        # ← proxy_pass /api → backend:5000
+│   ├── src/environments/environment.ts   # ← apiUrl: '/api' (Proxy!)
+│   └── src/app/core/interceptors/        # ← API Prefix /api
+│
+└── volumes/networks                      # ← postgres_data (persistent), conduit-net
+
