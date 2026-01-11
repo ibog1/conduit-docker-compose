@@ -35,7 +35,8 @@ docker compose up -d --build
 ```
 ### 4. Access
 ```bash
-API: http://<host-ip>:8000/api
-Admin: http://<host-ip>:8000/admin
+Frontend: http://YOUR_VM_IP:8282
+Backend API: http://YOUR_VM_IP:8000/api  
+DB: localhost:5432 (Postgres persistent)
 ```
 - On a cloud VM, open the firewall for port 8000 (backend) and 8282 (frontend).
