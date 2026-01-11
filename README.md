@@ -68,6 +68,7 @@ DB: localhost:5432 (Postgres persistent)
 - On a cloud VM, open the firewall for port 8000 (backend) and 8282 (frontend).
 
 ## Usage
+
 ### Collect static files
 Collect CSS/images for Django Admin once per image change.
 ```bash
@@ -126,6 +127,8 @@ Remove cached Angular/nginx files if frontend appears outdated.
 > Vars: UPPER_CASE_WITH_UNDERSCORE and restart after changes: ``docker compose restart``
 
 ---
+
+## Project Structure
 
 ```bash
 conduit-docker-compose/                     # MAIN REPOSITORY (docker-compose orchestrates everything)
