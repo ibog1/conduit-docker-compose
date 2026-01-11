@@ -7,7 +7,6 @@ Fullstack Conduit app following RealWorld API spec. Features JWT auth, articles 
 - [Quickstart](#quickstart)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
-- [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -28,7 +27,7 @@ git clone https://github.com/ibog1/conduit-docker-compose
 ```
 ### 2. Navigate to the Correct Direcotry: 
 ```bash
-cd conduit-fullstack
+cd conduit-docker-compose
 ```
 
 ### 3. Clone all Submodules 
@@ -39,7 +38,7 @@ git submodule update --init --recursive
 ### 4. Copy your Backend Environement file.
 Naviagte: 
 ```bash
-cd backend
+cd conduit-backend
 ```
 
 Copy the File: 
@@ -115,6 +114,20 @@ Remove cached Angular/nginx files if frontend appears outdated.
    - `POSTGRES_PASSWORD=strong-password`  
    - `DEBUG=False` (production)
    - Restart: `docker compose restart`
+
+### Environment Variables (.env.example)
+**Core**
+```bash
+DJANGO_ALLOWED_HOSTS=*,localhost,your-vm-ip
+SECRET_KEY=generate-with-django-command
+DEBUG=True
+```
+
+**DB/CORS:**
+```bash
+POSTGRES_PASSWORD=strongpass
+CORS_ORIGINS=http://localhost:8282,http://your-vm-ip:8282
+```
 
 ---
 
