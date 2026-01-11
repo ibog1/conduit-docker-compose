@@ -33,3 +33,9 @@ Local development (host ports: backend 8000):
 ```bash
 docker compose up -d --build
 ```
+### 4. Access
+```bash
+API: http://<host-ip>:8000/api
+Admin: http://<host-ip>:8000/admin
+```
+- On a cloud VM, open the firewall for port 8000 (backend) and 8282 (frontend).
