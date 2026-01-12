@@ -36,22 +36,9 @@ git submodule update --init --recursive
 ```
 
 ### 4. Copy your Backend Environement file.
-Naviagte: 
-```bash
-cd conduit-backend
-```
 
-Copy the File: 
 ```bash
-cp example.env .env
-```
-> [!NOTE]  
-> adjust values as needed
-
-Navigate Back to Root: 
-```bash
-cd ..
-```
+cp example.env conduit-backend/.env
 
 ### 5. Build and start Docker Compose 
 ```bash
