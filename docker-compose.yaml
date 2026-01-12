@@ -3,8 +3,9 @@ services:
     image: postgres:14
     env_file: .env
     environment:
-      - POSTGRES_DB=conduit
-      - POSTGRES_USER=conduit
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - TZ=UTC
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -19,8 +20,8 @@ services:
     restart: on-failure
     env_file: .env
     environment:
-      POSTGRES_DB: conduit
-      POSTGRES_USER: conduit
+      - DATABASE_URL=${DATABASE_URL}
+      - SECRET_KEY=${SECRET_KEY}
     ports:
       - "8000:5000"
     command: >
@@ -36,7 +37,7 @@ services:
     build:
       context: ./conduit-frontend
       args:
-        - API_URL=http://backend:8000/api
+        - API_URL=${API_URL}
     ports:
       - "8282:80"
     restart: on-failure
