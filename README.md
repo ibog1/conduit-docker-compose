@@ -54,12 +54,6 @@ DB: localhost:5432 (Postgres persistent)
 
 ## Usage
 
-### Collect static files
-Collect CSS/images for Django Admin once per image change.
-```bash
-docker compose exec backend python manage.py collectstatic --noinput
-```
-
 ### Create a superuser (Optional) 
 Create Django admin user for `/admin` access.
 ```bash
@@ -144,6 +138,7 @@ conduit-docker-compose/                     # MAIN REPOSITORY (docker-compose or
 │   │   ├── settings.py                     # Uses os.environ.get('SECRET_KEY')
 │   │   └── apps/                           # Articles, Auth, Profiles apps
 │   └── requirements.txt                    # Django, DRF, psycopg2
+│   └── entrypoint.sh                       # DB wait + migrate + collectstatic + gunicorn
 │
 ├── conduit-frontend/                       # Frontend submodule (Angular, build: ./conduit-frontend)
 │   ├── Dockerfile                          # Multi-stage build, nginx on port 80
