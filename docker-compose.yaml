@@ -2,10 +2,6 @@ services:
   db:
     image: postgres:14
     env_file: .env
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - TZ=UTC
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -19,9 +15,6 @@ services:
     build: ./conduit-backend
     restart: on-failure
     env_file: .env
-    environment:
-      - SECRET_KEY=${SECRET_KEY}
-      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
     depends_on:
       - db
     networks:
