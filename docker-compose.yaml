@@ -2,6 +2,7 @@ services:
   db:
     image: postgres:14
     env_file: .env
+    environment:
       - TZ=UTC
     volumes:
       - postgres_data:/var/lib/postgresql/data
