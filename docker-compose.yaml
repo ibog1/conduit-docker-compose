@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:14
+    env_file: .env
+    environment:
+      - TZ=UTC
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: on-failure
+    networks:
+      - conduit-net
+
+  backend:
+    build: ./conduit-backend
+    restart: on-failure
+    env_file: .env 
+    depends_on:
+      - db
+    networks:
+      - conduit-net
+
+  frontend:
+    build:
+      context: ./conduit-frontend
+      args:
+        - API_URL=${API_URL}
+    ports:
+      - "8282:80"
+    restart: on-failure
+    depends_on:
+      - backend
+    networks:
+      - conduit-net
+
+volumes:
+  postgres_data:
+
+networks:
+  conduit-net:

@@ -1,0 +1,18 @@
+[submodule "backend"]
+	path = conduit-backend
+	url = https://github.com/ibog1/conduit-backend
+	branch = feature/docker-backend
+
+[submodule "frontend"]
+	path = conduit-frontend
+	url = https://github.com/ibog1/conduit-frontend
+	branch = feature/docker-frontend #new
+
+[submodule "conduit-backend"]
+	path = conduit-backend
+	url = https://github.com/ibog1/conduit-backend.git
+	branch = feature/docker-backend
+[submodule "conduit-frontend"]
+	path = conduit-frontend
+	url = https://github.com/ibog1/conduit-frontend.git
+	branch = feature/docker-frontend
