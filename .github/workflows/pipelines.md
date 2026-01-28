@@ -22,7 +22,7 @@ This project implements fully automated Continuous Integration & Continuous Depl
 ### Repository Secrets Setup
 
 GitHub → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
-```bash
+
 
 | Secret | Purpose |
 |--------|---------|---------|
@@ -38,5 +38,5 @@ GitHub → **Settings** → **Secrets and variables** → **Actions** → **New 
 | `production` | Frontend flag |
 | `apiurl` | Frontend API URL |
       
-```
+
 Example Secret Keys are from our Environment Files. 
