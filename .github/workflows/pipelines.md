@@ -25,7 +25,7 @@ GitHub → **Settings** → **Secrets and variables** → **Actions** → **New 
 
 ```bash
 | Secret | Purpose |
-|--------|---------|---------|
+|--------|---------|
 | `SERVER_IP` | VM public IP |
 | `SERVER_USER` | VM SSH user |
 | `SERVER_PORT` | SSH port |
