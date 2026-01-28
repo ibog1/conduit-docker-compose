@@ -36,6 +36,9 @@ GitHub → **Settings** → **Secrets and variables** → **Actions** → **New 
 | `SECRET_KEY`    | Django SECRET_KEY          |
 | `production`    | Frontend production flag   |
 | `apiurl`        | Frontend API base URL      |
-```     
+```
+
+> [!WARNING]
+> **`SERVER_SSH_KEY` must use a private SSH key WITHOUT PASSPHRASE!**
 
 Example Secret Keys are from our Environment Files. 
