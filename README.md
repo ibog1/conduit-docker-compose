@@ -6,6 +6,7 @@ Fullstack Conduit app following RealWorld API spec. Features JWT auth, articles 
 ## Table of Contents
 - [Quickstart](#quickstart)
 - [Usage](#usage)
+-  [Pipelines](#pipelines)
 - [Project Structure](#project-structure)
 
 ---
