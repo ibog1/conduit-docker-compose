@@ -25,11 +25,10 @@ GitHub → **Settings** → **Secrets and variables** → **Actions** → **New 
 
 ```bash
 | Secret          | Purpose                    |
-|:----------------|:---------------------------|
 | `SERVER_IP`     | VM public IP address       |
 | `SERVER_USER`   | SSH username on VM         |
 | `SERVER_PORT`   | SSH port                   |
-| `SERVER_SSH_KEY`| **Private** SSH key (no passphrase) |
+| `SERVER_SSH_KEY`| **Private** SSH key        |
 | `DJANGO_PW`     | Django superuser password  |
 | `DJANGO_EMAIL`  | Django superuser email     |
 | `DJANGO_USER`   | Django superuser username  |
