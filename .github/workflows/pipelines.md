@@ -23,7 +23,7 @@ This project implements fully automated Continuous Integration & Continuous Depl
 
 GitHub → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
 
-
+```bash
 | Secret | Purpose |
 |--------|---------|---------|
 | `SERVER_IP` | VM public IP |
@@ -37,6 +37,6 @@ GitHub → **Settings** → **Secrets and variables** → **Actions** → **New 
 | `SECRET_KEY` | Django secret |
 | `production` | Frontend flag |
 | `apiurl` | Frontend API URL |
-      
+```     
 
 Example Secret Keys are from our Environment Files. 
