@@ -24,19 +24,19 @@ This project implements fully automated Continuous Integration & Continuous Depl
 GitHub → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
 
 ```bash
-| Secret | Purpose |
-|:--------|---------:|
-| `SERVER_IP` | VM public IP |
-| `SERVER_USER` | VM SSH user |
-| `SERVER_PORT` | SSH port |
-| `SERVER_SSH_KEY` | **Private** SSH key |
-| `DJANGO_PW` | Admin password |
-| `DJANGO_EMAIL` | Admin email |
-| `DJANGO_USER` | Admin username |
-| `ALLOWED_HOSTS` | Django hosts |
-| `SECRET_KEY` | Django secret |
-| `production` | Frontend flag |
-| `apiurl` | Frontend API URL |
+| Secret          | Purpose                    |
+|:----------------|:---------------------------|
+| `SERVER_IP`     | VM public IP address       |
+| `SERVER_USER`   | SSH username on VM         |
+| `SERVER_PORT`   | SSH port                   |
+| `SERVER_SSH_KEY`| **Private** SSH key (no passphrase) |
+| `DJANGO_PW`     | Django superuser password  |
+| `DJANGO_EMAIL`  | Django superuser email     |
+| `DJANGO_USER`   | Django superuser username  |
+| `ALLOWED_HOSTS` | Django ALLOWED_HOSTS       |
+| `SECRET_KEY`    | Django SECRET_KEY          |
+| `production`    | Frontend production flag   |
+| `apiurl`        | Frontend API base URL      |
 ```     
 
 Example Secret Keys are from our Environment Files. 
