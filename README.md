@@ -124,7 +124,7 @@ CORS_ORIGINS=http://localhost:8282,http://your-vm-ip:8282
 
 ### Pipelines
 
-GitHub Actions CI/CD pipeline documentation is available [here](/.github/pipelines.md).
+GitHub Actions CI/CD pipeline documentation is available [here](/.github/workflows/pipelines.md).
 
 ---
 
