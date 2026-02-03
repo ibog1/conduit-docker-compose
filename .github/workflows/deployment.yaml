@@ -6,7 +6,40 @@ on:
   workflow_dispatch:
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 0
+      
+      - name: Login to GHCR
+        uses: docker/login-action@v3.7.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build & Push Backend
+        uses: docker/build-push-action@v6.18.0
+        with:
+          context: ./backend
+          push: true
+          tags: ghcr.io/ibog1/conduit-backend:latest
+      
+      - name: Build & Push Frontend
+        uses: docker/build-push-action@v6.18.0
+        with:
+          context: ./frontend
+          push: true
+          tags: ghcr.io/ibog1/conduit-frontend:latest
+
   docker:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
