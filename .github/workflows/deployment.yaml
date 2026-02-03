@@ -14,56 +14,29 @@ jobs:
         with:
           fetch-depth: 0
       
-      - name: Generate env
+      - name: Generate .env
         run: |
-          echo "DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_PW }}" > generated.env 
-          echo "DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_EMAIL }}" >> generated.env  
-          echo "DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_USER }}" >> generated.env  
-          echo "ALLOWED_HOSTS=${{ secrets.SERVER_IP }}" >> generated.env  
-          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> generated.env  
-          echo "production=${{ secrets.production }}" > frontend.env 
-          echo "apiurl=${{ secrets.apiurl }}" >> frontend.env 
+          cat > .env << EOF
+          DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_PW }}
+          DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_EMAIL }}
+          DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_USER }}
+          ALLOWED_HOSTS=${{ secrets.SERVER_IP }}
+          SECRET_KEY=${{ secrets.SECRET_KEY }}
+          FRONTEND_PRODUCTION=${{ secrets.production }}
+          FRONTEND_APIURL=${{ secrets.apiurl }}
+          EOF
 
-      - name: Create remote folders
-        uses: appleboy/ssh-action@v1.2.5
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: ${{ secrets.SERVER_PORT }}
-          script: |
-            mkdir -p /home/ibrahim-guellue/conduit-docker-compose/backend
-            mkdir -p /home/ibrahim-guellue/conduit-docker-compose/frontend
 
-      - name: Copy docker-compose.yaml to server
+      - name: Copy docker-compose.yaml + .env to server
         uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
-          source: "./docker-compose.yaml"
+          source: "./docker-compose.yaml,.env"
           target: "/home/ibrahim-guellue/conduit-docker-compose"
 
-      - name: Copy generated.env to backend folder
-        uses: appleboy/scp-action@v1.0.0
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: ${{ secrets.SERVER_PORT }}
-          source: "./generated.env"
-          target: "/home/ibrahim-guellue/conduit-docker-compose/backend"
-
-      - name: Copy frontend.env to frontend folder
-        uses: appleboy/scp-action@v1.0.0
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: ${{ secrets.SERVER_PORT }}
-          source: "./frontend.env"
-          target: "/home/ibrahim-guellue/conduit-docker-compose/frontend"
 
       - name: Deploy to VM via SSH
         uses: appleboy/ssh-action@v1.2.5
@@ -75,7 +48,5 @@ jobs:
           script: |
             docker login ghcr.io -u ibog1 --password-stdin <<< ${{ secrets.GITHUB_TOKEN }}
             cd /home/ibrahim-guellue/conduit-docker-compose
-            docker pull ghcr.io/ibog1/conduit-backend
-            docker pull ghcr.io/ibog1/conduit-frontend
             docker compose down
-            docker compose --env-file backend/generated.env up -d
+            docker compose up -d
