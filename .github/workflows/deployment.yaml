@@ -61,7 +61,7 @@ jobs:
           DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_PW }}
           DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_EMAIL }}
           DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_USER }}
-          ALLOWED_HOSTS=${{ secrets.SERVER_IP }},localhost,127.0.0.1,backend
+          ALLOWED_HOSTS=${{ secrets.SERVER_IP }}
           SECRET_KEY=${{ secrets.SECRET_KEY }}
           DEBUG=${{ secrets.DEBUG }}
 
