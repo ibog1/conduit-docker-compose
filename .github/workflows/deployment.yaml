@@ -2,7 +2,7 @@ name: Conduit Deployment
 
 on:
   push:
-    branches: [ main ]
+    branches: [ conduit-deployment ]
   workflow_dispatch:
 
 jobs:
