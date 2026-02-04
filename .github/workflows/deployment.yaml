@@ -61,12 +61,12 @@ jobs:
           DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_PW }}
           DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_EMAIL }}
           DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_USER }}
-          ALLOWED_HOSTS='${{ secrets.SERVER_IP }},localhost,127.0.0.1,*'
+          DJANGO_ALLOWED_HOSTS='${{ secrets.SERVER_IP }},localhost,127.0.0.1,*'
           SECRET_KEY=${{ secrets.SECRET_KEY }}
           DEBUG=${{ secrets.DEBUG }}
 
           # CORS
-          CORS_ORIGINS=http://localhost:8282,http://127.0.0.1:8282,http://${{ secrets.SERVER_IP }}:8282
+          CORS_ORIGINS=localhost:8282,127.0.0.1:8282,${{ secrets.SERVER_IP }}:8282
 
           # Frontend
           FRONTEND_PRODUCTION=${{ secrets.production }}
