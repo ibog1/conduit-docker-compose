@@ -69,7 +69,7 @@ jobs:
           CORS_ORIGINS=localhost:8282,127.0.0.1:8282,${{ secrets.SERVER_IP }}:8282
 
           # Frontend
-          FRONTEND_PRODUCTION=${{ secrets.production }}
+          FRONTEND_PRODUCTION=${{ secrets.PRODUCTION }}
           FRONTEND_APIURL=${{ secrets.APIURL }}
           EOF
 
