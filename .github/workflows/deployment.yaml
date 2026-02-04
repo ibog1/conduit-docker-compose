@@ -73,7 +73,6 @@ jobs:
           FRONTEND_APIURL=${{ secrets.apiurl }}
           EOF
 
-
       - name: Copy docker-compose.yaml + .env to server
         uses: appleboy/scp-action@v1.0.0
         with:
