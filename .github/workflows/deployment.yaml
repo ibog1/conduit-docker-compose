@@ -27,14 +27,14 @@ jobs:
       - name: Build & Push Backend
         uses: docker/build-push-action@v6.18.0
         with:
-          context: ./backend
+          context: ./conduit-backend
           push: true
           tags: ghcr.io/ibog1/conduit-backend:latest
       
       - name: Build & Push Frontend
         uses: docker/build-push-action@v6.18.0
         with:
-          context: ./frontend
+          context: ./conduit-frontend
           push: true
           tags: ghcr.io/ibog1/conduit-frontend:latest
 
