@@ -70,7 +70,7 @@ jobs:
 
           # Frontend
           FRONTEND_PRODUCTION=${{ secrets.production }}
-          FRONTEND_APIURL=${{ secrets.apiurl }}
+          FRONTEND_APIURL=${{ secrets.APIURL }}
           EOF
 
       - name: Copy docker-compose.yaml + .env to server
