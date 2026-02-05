@@ -6,6 +6,7 @@ Fullstack Conduit app following RealWorld API spec. Features JWT auth, articles 
 ## Table of Contents
 - [Quickstart](#quickstart)
 - [Usage](#usage)
+  - [Pipelines](#pipelines)
 - [Project Structure](#project-structure)
 
 ---
@@ -118,6 +119,12 @@ CORS_ORIGINS=http://localhost:8282,http://your-vm-ip:8282
 
 > [!NOTE]
 > Vars: UPPER_CASE_WITH_UNDERSCORE and restart after changes: ``docker compose restart``
+
+---
+
+### Pipelines
+
+GitHub Actions CI/CD pipeline documentation is available [here](/.github/workflows/pipelines.md).
 
 ---
 

@@ -13,7 +13,7 @@ services:
       - conduit-net
 
   backend:
-    build: ./conduit-backend
+    image: ghcr.io/ibog1/conduit-backend:latest
     restart: on-failure
     env_file: .env 
     depends_on:
@@ -23,9 +23,7 @@ services:
 
   frontend:
     build:
-      context: ./conduit-frontend
-      args:
-        - API_URL=${API_URL}
+      image: ghcr.io/ibog1/conduit-frontend:latest
     ports:
       - "8282:80"
     restart: on-failure
