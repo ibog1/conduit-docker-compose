@@ -98,5 +98,7 @@ jobs:
           script: |
             docker login ghcr.io -u ibog1 --password-stdin <<< ${{ secrets.GITHUB_TOKEN }}
             cd /home/ibrahim-guellue/conduit-docker-compose
+            docker compose pull 
             docker compose down
             docker compose up -d
+            docker image prune -f
