@@ -96,7 +96,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            docker login ghcr.io -u ibog1 --password-stdin <<< ${{ secrets.GITHUB_TOKEN }}
             cd /home/ibrahim-guellue/conduit-docker-compose
             docker compose pull 
             docker compose down
